@@ -42,7 +42,7 @@ def eval_vs_plaus(
     """
     valid = df.dropna(subset=[flag_col, plaus_col]).copy()
     y_true = (valid[plaus_col] == -1).astype(int)
-    y_pred = (valid[flag_col].fillna(False) == True).astype(int)
+    y_pred = valid[flag_col].fillna(False).astype(int)
 
     cm = confusion_matrix(y_true, y_pred)
     report = classification_report(y_true, y_pred, digits=3, output_dict=True)
